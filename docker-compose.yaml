@@ -1,0 +1,35 @@
+# Starts an apache server with php 8.0 and wordpress 6.2.0 that will automatically connect to a mysql database
+# It will also mount the wp-content folder from the current directory to the wordpress container
+# If wp-content is missing, it will be created
+# Simply drop this file in a new project folder and run docker-compose up -d
+
+version: "3.9"
+
+services:
+   wordpress:
+      container_name: wordpress
+      image: wordpress:6.2.0-php8.0-apache
+      ports:
+         - "80:80"
+      volumes:
+         - wordpress:/var/www/html
+         - ./wp-content:/var/www/html/wp-content
+      environment:
+         WORDPRESS_DB_HOST: db
+         WORDPRESS_DB_USER: root
+         WORDPRESS_DB_PASSWORD: pw
+         WORDPRESS_DB_NAME: wordpress
+      depends_on:
+         - db
+   db:
+      container_name: db
+      image: mysql:8.0.33
+      volumes:
+         - db:/var/lib/mysql
+      environment:
+         MYSQL_ROOT_PASSWORD: pw
+         MYSQL_DATABASE: wordpress
+
+volumes:
+   wordpress:
+   db:

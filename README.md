@@ -1,1 +1,1 @@
-# wordpress_dev_docker
+Docker compose file used for locak development. Just drop it in a new project folder and run "docker compose up" and it will setup a new wordpress site and create a local "wp-content" folder for you to add your custom plugins and themes to
