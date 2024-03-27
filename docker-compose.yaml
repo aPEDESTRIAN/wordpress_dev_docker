@@ -1,4 +1,4 @@
-# Starts an apache server with php 8.0 and wordpress 6.2.0 that will automatically connect to a mysql database
+# Starts an apache server with php 8.1 and the latest version of wordpress
 # It will also mount the wp-content folder from the current directory to the wordpress container
 # If wp-content is missing, it will be created
 # Simply drop this file in a new project folder and run docker-compose up -d
@@ -8,7 +8,7 @@ version: "3.9"
 services:
    wordpress:
       container_name: wordpress
-      image: wordpress:6.2.0-php8.0-apache
+      image: wordpress:php8.1-apache
       ports:
          - "80:80"
       volumes:
